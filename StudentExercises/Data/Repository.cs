@@ -122,7 +122,7 @@ namespace StudentExercises.Data
                 c.Open();
                 using (SqlCommand cmd = c.CreateCommand())
                 {
-                    cmd.CommandText = $"SELECT i.Id, i.FirstName, i.LastName, i.SlackHandle, i.CohortId c.Name FROM Instructor i INNER JOIN Cohort c ON i.CohortId = c.Id";
+                    cmd.CommandText = $"SELECT i.Id, i.FirstName, i.LastName, i.SlackHandle, i.CohortId, c.Name FROM Instructor i INNER JOIN Cohort c ON i.CohortId = c.Id";
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     var instructors = new List<Instructor>();
@@ -206,7 +206,7 @@ namespace StudentExercises.Data
                 c.Open();
                 using (SqlCommand cmd = c.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM StudentExercise se INNER JOIN Exercise e on e.Id = s.ExerciseId WHERE se.StudentId = @StudentId";
+                    cmd.CommandText = "SELECT * FROM StudentExercise se INNER JOIN Exercise e on e.Id = se.ExerciseId WHERE se.StudentId = @StudentId";
                     cmd.Parameters.Add(new SqlParameter("@StudentId", StudentId));
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -239,7 +239,7 @@ namespace StudentExercises.Data
                 c.Open();
                 using (SqlCommand cmd = c.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT s.Id, s.FirstName, s.LastName, s.SlackHandle, s.CohortId, c.Name as CohortName FROM Student s INNER JOIN Cohort c ON s.CohortId = c.Id;
+                    cmd.CommandText = "SELECT s.Id, s.FirstName, s.LastName, s.SlackHandle, s.CohortId, c.Name as CohortName FROM Student s INNER JOIN Cohort c ON s.CohortId = c.Id";
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     var students = new List<Student>();
